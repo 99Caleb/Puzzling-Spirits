@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     public string sceneToLoad;
+    public bool doorPowered = false;
 
     private bool _isPlayerNear = false;
 
@@ -25,7 +26,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (_isPlayerNear && InputManager.Instance.interactPressed)
+        if (_isPlayerNear && doorPowered == true)
         {
             // Load the new scene when the player presses 'E'
             SceneManager.LoadScene(sceneToLoad);
