@@ -43,10 +43,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D.velocity = new Vector2(_input.moveDirection.x * moveSpeed, _rigidbody2D.velocity.y);
     }
-
     private bool IsPlayerGrounded()
     {
-        return Physics2D.Raycast(transform.position, Vector2.down, 1.1f, whatIsGround);
+        // Define the size and other parameters of the box cast
+        Vector2 size = new Vector2(0.9f, 0.1f); // Adjust the size as needed
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, size, 0f, Vector2.down, 1.1f, whatIsGround);
+
+        // Check if the box cast hit something
+        return hit.collider != null;
     }
 
     private void Jump()
