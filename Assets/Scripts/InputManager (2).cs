@@ -5,7 +5,10 @@ public class InputManager : MonoBehaviour
 {
     [Header("Movement")]
 // This variable is used to hold the Input value from WASD, Dpad or Left Stick
-    [HideInInspector] public Vector2 moveDirection;
+    [HideInInspector] 
+    public Vector2 moveDirection;
+    public float left;
+    public float right;
 
     [Header("Jump")]
     
@@ -59,13 +62,16 @@ public class InputManager : MonoBehaviour
         moveDirection.x = (_keyboard.dKey.isPressed ? 1 : 0) + (_keyboard.aKey.isPressed ? -1 : 0);
         moveDirection.y = (_keyboard.wKey.isPressed ? 1 : 0) + (_keyboard.sKey.isPressed ? -1 : 0);
     // Set the jump bools when spacebar is interacted with
-        jumpPressed = _keyboard.spaceKey.wasPressedThisFrame;
-        jumpReleased = _keyboard.spaceKey.wasReleasedThisFrame;
-        jumpHeld = _keyboard.spaceKey.isPressed; 
+        jumpPressed = _keyboard.wKey.wasPressedThisFrame;
+        jumpReleased = _keyboard.wKey.wasReleasedThisFrame;
+        jumpHeld = _keyboard.wKey.isPressed; 
     // Set the interact bools when the f key is interacted with
-        interactPressed = _keyboard.fKey.wasPressedThisFrame;
-        interactReleased = _keyboard.fKey.wasReleasedThisFrame;
-        interactHeld = _keyboard.fKey.isPressed;
+        interactPressed = _keyboard.spaceKey.wasPressedThisFrame;
+        interactReleased = _keyboard.spaceKey.wasReleasedThisFrame;
+        interactHeld = _keyboard.spaceKey.isPressed; 
+        // left only and right only
+        left = (_keyboard.aKey.isPressed ? -1 : 0);
+        right = (_keyboard.dKey.isPressed ? 1 : 0);
     }
     
     private void UpdateGamepadInput()

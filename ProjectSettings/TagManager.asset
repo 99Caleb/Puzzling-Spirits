@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Character
+  - Ground
+  - Wall
+  - WaterSpirit
+  - FireSpirit
+  - Bush
+  - StopCollider
+  - RockSpirit
   layers:
   - Default
   - TransparentFX
@@ -11,12 +19,12 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - WaterSpirit
+  - FireSpirit
+  - George
+  - OtherTiles
+  - RockSpirit
   - 
   - 
   - 
