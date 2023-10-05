@@ -12,6 +12,7 @@ public class FSAnimation : MonoBehaviour
     private SpriteRenderer _sprite;
     public LayerMask whoOn;
     private Collider2D _collider;
+    private bool _destroyedAlready = false;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -81,8 +82,9 @@ public class FSAnimation : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("WaterSpirit") || coll.gameObject.CompareTag("Bush") || coll.gameObject.CompareTag("Character"))
+        if ((coll.gameObject.CompareTag("WaterSpirit") || coll.gameObject.CompareTag("Bush") || coll.gameObject.CompareTag("Character")) && !_destroyedAlready)
         {
+            _destroyedAlready = true;
             _animator.Play("Extinguished");
             inControl.numbersToSkip.Add(connection.controlledInt);
             StartCoroutine(DestroyFireAfterWait());

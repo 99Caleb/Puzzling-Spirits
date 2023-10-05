@@ -8,6 +8,8 @@ public class inControl : MonoBehaviour
     public List<int> numbersToSkip;
     private InputManager _input;
     public int _current = 0;
+    public bool canSwitch = true;
+    public float playerSpeedX;
 
     private void Start()
     {
@@ -17,7 +19,7 @@ public class inControl : MonoBehaviour
 
     private void Update()
     {
-        if (!_input.interactPressed) return;
+        if (!_input.interactPressed || !canSwitch) return;
         for (int i = 0; i < numbersToSkip.Count; i++)
         {
             skipTester();

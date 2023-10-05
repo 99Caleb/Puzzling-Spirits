@@ -12,6 +12,7 @@ public class WSAnimation : MonoBehaviour
     private SpriteRenderer _sprite;
     public LayerMask whoOn;
     public GameObject stewart;
+    private bool _destroyedAlready = false;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -78,9 +79,9 @@ public class WSAnimation : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("FireSpirit"))
+        if (coll.gameObject.CompareTag("FireSpirit")  && !_destroyedAlready)
         {
-            
+            _destroyedAlready = true;
             _animator.Play("Extuingished");
             inControl.numbersToSkip.Add(connection.controlledInt);
             StartCoroutine(DestroyFireAfterWait());

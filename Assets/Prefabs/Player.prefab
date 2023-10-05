@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6044556867033073697}
   - component: {fileID: 3188786857732504925}
   - component: {fileID: 5193268031764880993}
-  - component: {fileID: 6847657053225111960}
   - component: {fileID: 3031081353593646820}
   - component: {fileID: 1698742387606772843}
   - component: {fileID: 7155074501856903481}
@@ -155,7 +154,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.95}
+  m_Offset: {x: 0, y: 0.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -165,7 +164,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6, y: 1.9}
+  m_Size: {x: 0.6, y: 1.8}
   m_EdgeRadius: 0
 --- !u!114 &5193268031764880993
 MonoBehaviour:
@@ -192,20 +191,6 @@ MonoBehaviour:
   interactHeld: 0
   usingGamepad: 0
   usingDpad: 0
---- !u!114 &6847657053225111960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7720702784715068251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389d7c89e1bddf74aa878cfa7228edd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: 
-  doorPowered: 1
 --- !u!114 &3031081353593646820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,16 +206,16 @@ MonoBehaviour:
   inControl: {fileID: 1698742387606772843}
   connectionScript: {fileID: 5373189103217092809}
   moveSpeed: 5
-  jumpSpeed: 5.1
+  jumpSpeed: 5.3
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 2696
+    m_Bits: 3720
   canStayOn:
     serializedVersion: 2
     m_Bits: 2176
   isWall:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 1544
 --- !u!114 &1698742387606772843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlled: 0
-  numberControlled: 7
+  numberControlled: 4
   countingNumbers: 
   numbersToSkip: 
   _current: 0
@@ -265,7 +250,9 @@ MonoBehaviour:
   whoOn:
     serializedVersion: 2
     m_Bits: 128
-  scene: {fileID: 0}
+  scene: {fileID: 2318530008806481456}
+  nextLevelName: Level4
+  door: {fileID: 0}
 --- !u!95 &2780642518027338526
 Animator:
   serializedVersion: 7

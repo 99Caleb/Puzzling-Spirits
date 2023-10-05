@@ -18,6 +18,7 @@ public class RSconnectionScript : MonoBehaviour
             Debug.Log("Peanut");
             _inControl.numberControlled++;
             controlledInt = _inControl.numberControlled - 1;
+            _inControl.countingNumbers.Add(controlledInt);
             _inControl._current = _inControl.numberControlled;
             _inControl.controlled = _inControl.numberControlled - 1;
         }

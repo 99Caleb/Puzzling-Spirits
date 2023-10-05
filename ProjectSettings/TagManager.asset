@@ -12,6 +12,7 @@ TagManager:
   - Bush
   - StopCollider
   - RockSpirit
+  - Door
   layers:
   - Default
   - TransparentFX
