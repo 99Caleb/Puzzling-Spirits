@@ -62,17 +62,12 @@ using UnityEngine;
                 inControl.numbersToSkip.Add(connectionScript.controlledInt);
                 inControl.controlled = 0;
                 inControl._current = 0;
-                Destroy(coll.gameObject);
                 isWet = true;
                 
             }
             else if (coll.gameObject.CompareTag("FireSpirit"))
             {
                 isOnFire = true;
-            }
-            else
-            {
-                Debug.Log("Wat");
             }
         }
         

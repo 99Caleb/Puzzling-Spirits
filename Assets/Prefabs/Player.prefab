@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7753191401603633730, guid: bb77ed9a03c4302458ebeeb31b2dd731, type: 3}
+  m_Sprite: {fileID: 1299329159883658367, guid: db56bbbc709fc1540a951661e1e9ff8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.0625, y: 1.5}
+  m_Size: {x: 1.375, y: 1.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -159,7 +159,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.375, y: 1.9375}
-    newSize: {x: 1.0625, y: 1.5}
+    newSize: {x: 1.375, y: 1.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   jumpPressed: 0
   jumpReleased: 0
   jumpHeld: 0
+  reset: 0
   canInteract: 0
   interactPressed: 0
   interactReleased: 0
@@ -205,11 +206,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inControl: {fileID: 1698742387606772843}
   connectionScript: {fileID: 5373189103217092809}
-  moveSpeed: 5
-  jumpSpeed: 5.3
+  moveSpeed: 4
+  jumpSpeed: 5.5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 3720
+    m_Bits: 2696
   canStayOn:
     serializedVersion: 2
     m_Bits: 2176
@@ -229,10 +230,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlled: 0
-  numberControlled: 4
+  numberControlled: 8
   countingNumbers: 
   numbersToSkip: 
   _current: 0
+  canSwitch: 1
+  playerSpeedX: 0
 --- !u!114 &7155074501856903481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +254,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   scene: {fileID: 2318530008806481456}
-  nextLevelName: Level4
+  nextLevelName: Win
   door: {fileID: 0}
 --- !u!95 &2780642518027338526
 Animator:
@@ -263,7 +266,7 @@ Animator:
   m_GameObject: {fileID: 7720702784715068251}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f9481707bb9aee498808d64f8724ae9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4bd45ebc4120e2242aaa0f8954e332e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

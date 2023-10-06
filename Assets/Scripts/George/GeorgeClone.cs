@@ -37,7 +37,6 @@ public class GeorgeClone : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("Hi");
         GeorgeMechanic spawnCopy = GameObject.Find("George").GetComponent<GeorgeMechanic>();
         inControl inControl = GameObject.Find("Player").GetComponent<inControl>(); 
         if (coll.gameObject.CompareTag("WaterSpirit") && spawnCopy.numberOfClones <= spawnCopy.maxClones && !spawnCopy.isWet && !georgeMechanic.isGrowing)
@@ -47,16 +46,11 @@ public class GeorgeClone : MonoBehaviour
             inControl.numbersToSkip.Add(connectionScript.controlledInt);
             inControl.controlled = 0;
             inControl._current = 0;
-            Destroy(coll.gameObject);
             spawnCopy.isWet = true;
         }
         else if (coll.gameObject.CompareTag("FireSpirit"))
         {
             georgeMechanic.isOnFire = true;
-        }
-        else
-        {
-            Debug.Log("This isn't right");
         }
     }
     private bool isNotOnTop()

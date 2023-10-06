@@ -75,10 +75,25 @@ public class RSAnimation : MonoBehaviour
             _animator.SetBool("onEntity", false);
         }
         
+        if (whoIsUp())
+        {
+            _animator.SetBool("whoIsUp", true);
+        }
+        else
+        {
+            _animator.SetBool("whoIsUp", false);
+        }
+        
     }
     private bool whoAmOn()
     { Vector2 size = new Vector2(0.4f, 0.1f);
         Vector2 castOrigin = transform.position - new Vector3(0f, 0.1f, 0f);
+        RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, whoOn);
+        return hit.collider != null; }
+    
+    private bool whoIsUp()
+    { Vector2 size = new Vector2(0.4f, 0.1f);
+        Vector2 castOrigin = transform.position + new Vector3(0f, 1.05f, 0f);
         RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, whoOn);
         return hit.collider != null; }
 }

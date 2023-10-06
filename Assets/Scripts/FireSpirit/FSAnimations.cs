@@ -79,19 +79,39 @@ public class FSAnimation : MonoBehaviour
         Vector2 castOrigin = transform.position - new Vector3(0f, 0.1f, 0f);
         RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, whoOn);
         return hit.collider != null; }
-    
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if ((coll.gameObject.CompareTag("WaterSpirit") || coll.gameObject.CompareTag("Bush") || coll.gameObject.CompareTag("Character")) && !_destroyedAlready)
+        if ((coll.gameObject.CompareTag("Bush") || coll.gameObject.CompareTag("Character")) && !_destroyedAlready)
         {
             _destroyedAlready = true;
             _animator.Play("Extinguished");
             inControl.numbersToSkip.Add(connection.controlledInt);
             StartCoroutine(DestroyFireAfterWait());
         }
+        if ((coll.gameObject.CompareTag("WaterSpirit") && !_destroyedAlready))
+        {
+            _destroyedAlready = true;
+            _animator.Play("Extinguished");
+            inControl.numbersToSkip.Add(connection.controlledInt);
+            StartCoroutine(DestroyFireAfterWaitWater());
+        }
     }
     IEnumerator DestroyFireAfterWait()
     {
+        Collider2D collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        _rigidbody.isKinematic = true;
+        inControl.controlled = 0;
+        inControl._current = 0;
+        yield return new WaitForSeconds(.7f);
+        Destroy(gameObject);
+    }
+    
+    IEnumerator DestroyFireAfterWaitWater()
+    {
+        Collider2D collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        _rigidbody.isKinematic = true;
         yield return new WaitForSeconds(.7f);
         Destroy(gameObject);
     }

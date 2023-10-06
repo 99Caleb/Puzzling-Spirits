@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework.Constraints;
 using UnityEngine.SceneManagement;
 
 public class PlayerAnimation : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     public SceneController scene;
     public string nextLevelName;
     public door door;
+    public bool endSequence = false;
 
     private void Start()
     {
@@ -33,9 +35,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (_input.reset)
         {
-            CoinUI.tempCoin = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _animator.Play("Oof");
+            StartCoroutine(reset());
         }
+
         if (_input.moveDirection.x == 0)
         {
             _animator.SetBool("isWalking", false);
@@ -80,12 +83,29 @@ public class PlayerAnimation : MonoBehaviour
             _animator.SetBool("onEntity", false);
         }
 
+        if (whoIsUp())
+        {
+            _animator.SetBool("whoIsUp", true);
+        }
+        else
+        {
+            _animator.SetBool("whoIsUp", false);
+        }
+
     }
 
     private bool whoAmOn()
     {
         Vector2 size = new Vector2(0.4f, 0.1f);
-        Vector2 castOrigin = transform.position - new Vector3(0f, 0.1f, 0f);
+        Vector2 castOrigin = transform.position - new Vector3(0f, 0.4f, 0f);
+        RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, whoOn);
+        return hit.collider != null;
+    }
+
+    private bool whoIsUp()
+    {
+        Vector2 size = new Vector2(0.4f, 0.1f);
+        Vector2 castOrigin = transform.position + new Vector3(0f, 2.3f, 0f);
         RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, whoOn);
         return hit.collider != null;
     }
@@ -94,8 +114,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("FireSpirit"))
         {
-            _animator.Play("Death");
+            _animator.Play("Fire oof");
             inControl.numbersToSkip.Add(connection.controlledInt);
+
             StartCoroutine(fireReset());
         }
     }
@@ -104,24 +125,36 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Door") && door.doorPowered == true)
         {
-            //_animator.Play("Death");
+            _animator.Play("Walkin door");
+            endSequence = true;
+            _rigidbody.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             StartCoroutine(doorEnter());
         }
     }
-    
+
+
+
     IEnumerator fireReset()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.2f);
         CoinUI.tempCoin = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
     IEnumerator doorEnter()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.5f);
         Debug.Log(nextLevelName);
         CoinUI.totalScore = CoinUI.totalScore + CoinUI.tempCoin;
         CoinUI.tempCoin = 0;
         SceneManager.LoadScene(nextLevelName);
     }
+
+    IEnumerator reset()
+    {
+        yield return new WaitForSeconds(2.2f);
+        CoinUI.tempCoin = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

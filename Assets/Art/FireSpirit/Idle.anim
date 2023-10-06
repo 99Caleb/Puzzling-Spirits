@@ -21,15 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -8325497043036208695, guid: e5477a8fa8a15204eb13b89858a42f6a, type: 3}
+      value: {fileID: 7516891337696705345, guid: 648ca7ee7e99a6347a575e57b1456a72, type: 3}
     - time: 0.1
-      value: {fileID: -4682042007373194871, guid: e5477a8fa8a15204eb13b89858a42f6a, type: 3}
+      value: {fileID: 3512657332813654547, guid: 648ca7ee7e99a6347a575e57b1456a72, type: 3}
     - time: 0.20000002
-      value: {fileID: 2912097612934639848, guid: e5477a8fa8a15204eb13b89858a42f6a, type: 3}
+      value: {fileID: 8234658970855914673, guid: 648ca7ee7e99a6347a575e57b1456a72, type: 3}
     - time: 0.3
-      value: {fileID: -4427827729465186647, guid: e5477a8fa8a15204eb13b89858a42f6a, type: 3}
+      value: {fileID: -8727258524499009494, guid: 648ca7ee7e99a6347a575e57b1456a72, type: 3}
     - time: 0.4
-      value: {fileID: -4427827729465186647, guid: e5477a8fa8a15204eb13b89858a42f6a, type: 3}
+      value: {fileID: -8727258524499009494, guid: 648ca7ee7e99a6347a575e57b1456a72, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212

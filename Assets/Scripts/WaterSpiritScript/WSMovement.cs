@@ -18,7 +18,6 @@ public class WSMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private InputManager _input;
     
-    private float otherPositionY;
     private void Start()
     { _rigidbody2D = GetComponent<Rigidbody2D>();
         _input = GetComponent<InputManager>(); }
@@ -28,7 +27,7 @@ public class WSMovement : MonoBehaviour
         {
             _rigidbody2D.mass = 50;
             _desiredVelocity = _rigidbody2D.velocity;
-            inControl.playerSpeedX = _desiredVelocity.x /5;
+            inControl.playerSpeedX = _rigidbody2D.velocityX / 3.75f;
             
             if (_input.jumpPressed)
             {
@@ -52,7 +51,10 @@ public class WSMovement : MonoBehaviour
         if (StayOnCharacter() && inControl.controlled != connectionScript.controlledInt)
         {
             _rigidbody2D.velocity = new Vector2(inControl.playerSpeedX * moveSpeed, _rigidbody2D.velocity.y);
-            _rigidbody2D.position = new Vector2(_rigidbody2D.position.x, otherPositionY);
+            if (_input.jumpPressed)
+            {
+                Jump(); 
+            }
         }
 
         if (StayOnCharacter())
@@ -97,59 +99,53 @@ public class WSMovement : MonoBehaviour
         return hit.collider != null; }
 
     private bool StayOnCharacter()
-    {
-        Vector2 size = new Vector2(0.2f, 0.01f);
-        Vector2 castOrigin = transform.position - new Vector3(0f, 0.1f, 0f);
-        RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, canStayOn);
-        if (hit.collider != null)
         {
-            connectionScript connection = hit.collider.GetComponent<connectionScript>();
-            if (connection != null)
+            Vector2 size = new Vector2(0.2f, 0.01f);
+            Vector2 castOrigin = transform.position - new Vector3(0f, 0.8f, 0f);
+            RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.down, 0f, canStayOn);
+            if (hit.collider != null)
             {
-                if (connection.playerEntity == true || connection.nextToPlayerEntity == true)
+                connectionScript connection = hit.collider.GetComponent<connectionScript>();
+                if (connection != null)
                 {
-                    if (hit.collider.CompareTag("Character"))
+                    if (connection.playerEntity || connection.nextToPlayerEntity)
                     {
-                        Transform transform = hit.collider.GetComponent<Transform>();
-                        otherPositionY = transform.position.y + 1.8f;
+                        return true;
                     }
-                    else
+
+                    if(inControl.controlled != connectionScript.controlledInt)
                     {
-                        Transform transform = hit.collider.GetComponent<Transform>();
-                        otherPositionY = transform.position.y + 0.9f;
+                        Rigidbody2D otherRB = hit.collider.GetComponent<Rigidbody2D>();
+                        _rigidbody2D.velocityX = otherRB.velocity.x;
+                        return false;
                     }
-                    return true;
+
+                    return false;
                 }
-            }
-            else
-            {
+
                 RSconnectionScript RSconnection = hit.collider.GetComponent<RSconnectionScript>();
                 if (RSconnection != null)
                 {
-                    if (RSconnection.playerEntity == true || RSconnection.nextToPlayerEntity == true)
+                    if (RSconnection.playerEntity || RSconnection.nextToPlayerEntity)
                     {
-                        Transform transform = hit.collider.GetComponent<Transform>();
-                        otherPositionY = transform.position.y + 0.9f;
                         return true;
                     }
-                }
-                else
-                {
+                    if(inControl.controlled != connectionScript.controlledInt)
+                    {
+                        Rigidbody2D otherRB = hit.collider.GetComponent<Rigidbody2D>();
+                        _rigidbody2D.velocityX = otherRB.velocity.x;
+                        return false;
+                    }
                     return false;
                 }
                 return false;
             }
-        }
-        else
-        {
             return false;
         }
-        return false;
-    }
 
     private bool DetectWall()
-    { Vector2 size = new Vector2(0.01f, .88f);
-        Vector2 castOrigin = transform.position + new Vector3(transform.localScale.x * 0.55f, 0.45f, 0f);
+    { Vector2 size = new Vector2(0.01f, .9f);
+        Vector2 castOrigin = transform.position + new Vector3(transform.localScale.x * 0.55f, 0.475f, 0f);
         RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.right, 0f, isWall);
         
         return hit.collider != null; }

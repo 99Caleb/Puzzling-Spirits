@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1589226471808695767, guid: 92dcbc888db5742418b9ffd96cd76208, type: 3}
+  m_Sprite: {fileID: 249823916858956301, guid: 9b20021cc4f3b0a418be658227b6fbc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.46875}
+  m_Offset: {x: 0, y: 0.475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -162,7 +162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.9}
+  m_Size: {x: 1, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &5883237676290300834
 MonoBehaviour:
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inControl: {fileID: 0}
   connectionScript: {fileID: 0}
-  moveSpeed: 5
-  jumpSpeed: 5.1
+  moveSpeed: 4
+  jumpSpeed: 5.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4040
@@ -208,6 +208,7 @@ MonoBehaviour:
   jumpPressed: 0
   jumpReleased: 0
   jumpHeld: 0
+  reset: 0
   canInteract: 0
   interactPressed: 0
   interactReleased: 0
@@ -224,7 +225,7 @@ Animator:
   m_GameObject: {fileID: 3531677316586327939}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 868f1c5c364ad8e4587995d400b0ae39, type: 2}
+  m_Controller: {fileID: 9100000, guid: e276d6237bc32a74590698d83d14d681, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -268,4 +269,4 @@ MonoBehaviour:
   inControl: {fileID: 0}
   whoOn:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2496

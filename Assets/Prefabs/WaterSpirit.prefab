@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 718865782884386843}
   - component: {fileID: 4721404656571346371}
   - component: {fileID: 7283701826824025489}
-  - component: {fileID: 6484974258495728110}
   - component: {fileID: 8130408000166049865}
   - component: {fileID: 8064269641830418840}
   - component: {fileID: 1648027561629953207}
   - component: {fileID: 5800669059395618375}
   - component: {fileID: 4713277719316003447}
+  - component: {fileID: 1348101312433531546}
   m_Layer: 7
   m_Name: WaterSpirit
   m_TagString: WaterSpirit
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3317814116952484091, guid: d0e5204c9784bf5408d927bc7cae040e, type: 3}
+  m_Sprite: {fileID: -8394159116950981117, guid: cb130d33f14e5b144991f76c93f3f599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,8 +118,116 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &6484974258495728110
-PolygonCollider2D:
+--- !u!114 &8130408000166049865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277324778651461991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d419d697b74be7645a1abb4302b36d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0}
+  left: 0
+  right: 0
+  canJump: 0
+  jumpPressed: 0
+  jumpReleased: 0
+  jumpHeld: 0
+  reset: 0
+  canInteract: 0
+  interactPressed: 0
+  interactReleased: 0
+  interactHeld: 0
+  usingGamepad: 0
+  usingDpad: 0
+--- !u!114 &8064269641830418840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277324778651461991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d03d24d1863af741869c60c1282e291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inControl: {fileID: 0}
+  connectionScript: {fileID: 4713277719316003447}
+  moveSpeed: 4
+  jumpSpeed: 5.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 3784
+  canStayOn:
+    serializedVersion: 2
+    m_Bits: 2752
+  isWall:
+    serializedVersion: 2
+    m_Bits: 1032
+--- !u!114 &1648027561629953207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277324778651461991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8065378ac51d2c4d9ba42ef3e0d327f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connection: {fileID: 4713277719316003447}
+  inControl: {fileID: 0}
+  whoOn:
+    serializedVersion: 2
+    m_Bits: 2240
+  stewart: {fileID: 3531677316586327939, guid: 1a2a134bb9bbc9341b14a707d873e240, type: 3}
+  door: {fileID: 0}
+--- !u!95 &5800669059395618375
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277324778651461991}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c71b190ab2cd07c4ab9dcf88ee7b51a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4713277719316003447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277324778651461991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6027146e704815442be4cd57c75745db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEntity: 0
+  nextToPlayerEntity: 1
+  controlledInt: 7
+  _inControl: {fileID: 0}
+--- !u!61 &1348101312433531546
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,7 +260,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -162,118 +270,5 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.2, y: 0.9}
-      - {x: -0.45, y: 0.6}
-      - {x: -0.5, y: 0}
-      - {x: 0.5, y: 0}
-      - {x: 0.45, y: 0.6}
-      - {x: 0.2, y: 0.95}
-  m_UseDelaunayMesh: 0
---- !u!114 &8130408000166049865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5277324778651461991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d419d697b74be7645a1abb4302b36d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0}
-  left: 0
-  right: 0
-  canJump: 0
-  jumpPressed: 0
-  jumpReleased: 0
-  jumpHeld: 0
-  canInteract: 0
-  interactPressed: 0
-  interactReleased: 0
-  interactHeld: 0
-  usingGamepad: 0
-  usingDpad: 0
---- !u!114 &8064269641830418840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5277324778651461991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d03d24d1863af741869c60c1282e291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inControl: {fileID: 0}
-  connectionScript: {fileID: 4713277719316003447}
-  moveSpeed: 5
-  jumpSpeed: 5.3
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 3784
-  canStayOn:
-    serializedVersion: 2
-    m_Bits: 2752
-  isWall:
-    serializedVersion: 2
-    m_Bits: 1032
---- !u!114 &1648027561629953207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5277324778651461991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8065378ac51d2c4d9ba42ef3e0d327f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connection: {fileID: 4713277719316003447}
-  inControl: {fileID: 0}
-  whoOn:
-    serializedVersion: 2
-    m_Bits: 192
-  stewart: {fileID: 3531677316586327939, guid: 1a2a134bb9bbc9341b14a707d873e240, type: 3}
---- !u!95 &5800669059395618375
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5277324778651461991}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60c46bc612929d44a9dc9ef68a894e5c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4713277719316003447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5277324778651461991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6027146e704815442be4cd57c75745db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerEntity: 0
-  nextToPlayerEntity: 1
-  controlledInt: 1
-  _inControl: {fileID: 0}
+  m_Size: {x: 0.7, y: 0.95}
+  m_EdgeRadius: 0
