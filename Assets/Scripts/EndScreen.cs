@@ -17,7 +17,7 @@ public class EndScreen : MonoBehaviour
     {
         if (_input.interactPressed)
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Main_menu");
         }
     }
 }

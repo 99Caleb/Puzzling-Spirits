@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     
     [HideInInspector] public bool canJump;
 // These variables are used to hold Input values from Spacebar or South button
-    [HideInInspector] public bool jumpPressed, jumpReleased, jumpHeld, reset;
+    [HideInInspector] public bool jumpPressed, jumpReleased, jumpHeld, reset, mainMenu;
 
     [Header("Interact")]
     [HideInInspector] public bool canInteract;
@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
         
         //reset
         reset = _keyboard.rKey.isPressed;
+        mainMenu = _keyboard.escapeKey.isPressed;
     }
     
     private void UpdateGamepadInput()

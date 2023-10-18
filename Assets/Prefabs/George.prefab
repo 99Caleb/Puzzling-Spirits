@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9039816923928745194, guid: c12e9bda48a3b5344adc8948cc200eff, type: 3}
+  m_Sprite: {fileID: 8218634004244836419, guid: 6142c5982b02d794ebdce981e803e6dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,7 +154,9 @@ MonoBehaviour:
   startAnimation: 0
   inControl: {fileID: 0}
   isOnFire: 0
+  isGrowing: 0
   George: {fileID: 213240411442569453, guid: a91a6c07dd106294d9ea1798e69f7152, type: 3}
+  WaterBushReaction: {fileID: 6657590452866231884, guid: 6459515cd9a4cfd468c1c8507c3d49f8, type: 3}
 --- !u!95 &2332295052924284892
 Animator:
   serializedVersion: 7
@@ -165,7 +167,7 @@ Animator:
   m_GameObject: {fileID: 48545423284421546}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2dcb3b686e90e545889710ee5e20cd5, type: 2}
+  m_Controller: {fileID: 9100000, guid: c5f232b06f3dd5c409f00adf63d0d8f1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

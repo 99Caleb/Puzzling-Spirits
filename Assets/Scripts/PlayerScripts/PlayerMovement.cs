@@ -6,6 +6,7 @@ namespace PlayerScripts
     {
         public inControl inControl;
         public connectionScript connectionScript;
+        public arrowFollow arrowFollow;
     
         [Header("Movement")] public float moveSpeed = 5f;
         public float jumpSpeed = 5.1f;
@@ -28,6 +29,8 @@ namespace PlayerScripts
                 _rigidbody2D.mass = 50;
                 _desiredVelocity = _rigidbody2D.velocity;
                 inControl.playerSpeedX = _desiredVelocity.x /3.75f;
+                arrowFollow.arrowPositionX = _rigidbody2D.position.x;
+                arrowFollow.arrowPositionY = _rigidbody2D.position.y + 1.5f;
                 if (_input.jumpPressed)
                 {
                     Jump(); 
@@ -144,8 +147,8 @@ namespace PlayerScripts
         }
 
         private bool DetectWall()
-        { Vector2 size = new Vector2(0.01f, .9f);
-            Vector2 castOrigin = transform.position + new Vector3(transform.localScale.x * 0.55f, 0.475f, 0f);
+        { Vector2 size = new Vector2(0.01f, 1.7f);
+            Vector2 castOrigin = transform.position + new Vector3(transform.localScale.x * 0.55f, 0.9f, 0f);
             RaycastHit2D hit = Physics2D.BoxCast(castOrigin, size, 0f, Vector2.right, 0f, isWall);
         
             return hit.collider != null; }

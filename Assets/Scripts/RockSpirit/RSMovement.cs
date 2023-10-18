@@ -6,6 +6,7 @@ public class RSMovement : MonoBehaviour
 {
     public inControl inControl;
     public RSconnectionScript connectionScript;
+    public arrowFollow arrowFollow;
     
     [Header("Movement")] public float moveSpeed = 5f;
     public float jumpSpeed = 5.1f;
@@ -21,6 +22,7 @@ public class RSMovement : MonoBehaviour
     { _rigidbody2D = GetComponent<Rigidbody2D>();
         _input = GetComponent<InputManager>();
         inControl = GameObject.Find("Player").GetComponent<inControl>();
+        arrowFollow = GameObject.Find("Arrow").GetComponent<arrowFollow>();
         connectionScript = GetComponent<RSconnectionScript>();
     }
     private void Update()
@@ -30,6 +32,8 @@ public class RSMovement : MonoBehaviour
             _rigidbody2D.mass = 50;
             _desiredVelocity = _rigidbody2D.velocity;
             inControl.playerSpeedX = _desiredVelocity.x /3.75f;
+            arrowFollow.arrowPositionX = _rigidbody2D.position.x;
+            arrowFollow.arrowPositionY = _rigidbody2D.position.y + .6f;
             if (_input.jumpPressed)
             {
                 Jump(); 

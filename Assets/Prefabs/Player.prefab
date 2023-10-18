@@ -186,6 +186,7 @@ MonoBehaviour:
   jumpReleased: 0
   jumpHeld: 0
   reset: 0
+  mainMenu: 0
   canInteract: 0
   interactPressed: 0
   interactReleased: 0
@@ -210,7 +211,7 @@ MonoBehaviour:
   jumpSpeed: 5.5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 2696
+    m_Bits: 3720
   canStayOn:
     serializedVersion: 2
     m_Bits: 2176
@@ -256,6 +257,7 @@ MonoBehaviour:
   scene: {fileID: 2318530008806481456}
   nextLevelName: Win
   door: {fileID: 0}
+  endSequence: 0
 --- !u!95 &2780642518027338526
 Animator:
   serializedVersion: 7

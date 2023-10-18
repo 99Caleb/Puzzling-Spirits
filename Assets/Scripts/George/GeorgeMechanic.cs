@@ -21,6 +21,7 @@ using UnityEngine;
         //public inControl inControl;
 
         public GameObject George;
+        public GameObject WaterBushReaction;
 
         private void Start()
         {
@@ -38,13 +39,12 @@ using UnityEngine;
                 StartCoroutine(SpawnGeorgeClone());
                 if(!isNotOnTop())
                 {
-                    _animator.SetBool("growing", true);
+                    _animator.Play("Grow");
                 }
             }
             else
             {
                 startAnimation = false;
-                _animator.SetBool("growing", false);
             }
 
             if (isOnFire == true)
@@ -56,13 +56,18 @@ using UnityEngine;
         private void OnCollisionEnter2D(Collision2D coll)
         {
             if (coll.gameObject.CompareTag("WaterSpirit") && !isWet && numberOfClones < maxClones && !isGrowing)
-            {
+            { ;
+                WaterBushReaction = Instantiate(WaterBushReaction);
+                var position = coll.transform.position;
+                WaterBushReaction.transform.position = new Vector3(position.x, position.y);
+                Destroy(coll.gameObject);
                 isGrowing = true;
                 connectionScript connectionScript = coll.gameObject.GetComponent<connectionScript>();
                 inControl.numbersToSkip.Add(connectionScript.controlledInt);
+                isWet = true;
+                //if(coll.controlledInt)
                 inControl.controlled = 0;
                 inControl._current = 0;
-                isWet = true;
                 
             }
             else if (coll.gameObject.CompareTag("FireSpirit"))
@@ -80,15 +85,17 @@ using UnityEngine;
         IEnumerator SpawnGeorgeClone()
         {
             yield return new WaitForSeconds (.6f);
+            WaterBushReaction.transform.position = new Vector2(-100, -100);
             GameObject GeorgeClone = Instantiate(George);
             var position = transform.position;
             GeorgeClone.transform.position = new Vector3(position.x, position.y + numberOfClones,position.z + numberOfClones);
             isGrowing = false;
+            
         }
         
         IEnumerator DestroyBushAfterWait()
         {
-            yield return new WaitForSeconds(.6f);
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
     }

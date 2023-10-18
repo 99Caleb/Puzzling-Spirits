@@ -38,6 +38,10 @@ public class PlayerAnimation : MonoBehaviour
             _animator.Play("Oof");
             StartCoroutine(reset());
         }
+        if (_input.mainMenu)
+        {
+            SceneManager.LoadScene("Main_menu");
+        }
 
         if (_input.moveDirection.x == 0)
         {

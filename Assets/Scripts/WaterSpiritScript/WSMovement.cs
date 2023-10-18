@@ -6,6 +6,7 @@ public class WSMovement : MonoBehaviour
 {
     public inControl inControl;
     public connectionScript connectionScript;
+    public arrowFollow arrowFollow;
     
     [Header("Movement")] public float moveSpeed = 5f;
     public float jumpSpeed = 12f;
@@ -18,9 +19,14 @@ public class WSMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private InputManager _input;
     
+    public GeorgeMechanic georgeMechanic;
+    
     private void Start()
     { _rigidbody2D = GetComponent<Rigidbody2D>();
-        _input = GetComponent<InputManager>(); }
+        _input = GetComponent<InputManager>(); 
+        georgeMechanic = GameObject.Find("George").GetComponent<GeorgeMechanic>();
+    }
+    
     private void Update()
     { 
         if (inControl.controlled == connectionScript.controlledInt)
@@ -28,7 +34,8 @@ public class WSMovement : MonoBehaviour
             _rigidbody2D.mass = 50;
             _desiredVelocity = _rigidbody2D.velocity;
             inControl.playerSpeedX = _rigidbody2D.velocityX / 3.75f;
-            
+            arrowFollow.arrowPositionX = _rigidbody2D.position.x;
+            arrowFollow.arrowPositionY = _rigidbody2D.position.y + .6f;
             if (_input.jumpPressed)
             {
                 Jump(); 

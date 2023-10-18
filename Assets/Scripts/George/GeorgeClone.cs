@@ -10,6 +10,8 @@ public class GeorgeClone : MonoBehaviour
     public LayerMask isBush;
     public GeorgeMechanic georgeMechanic;
     public inControl inControl;
+    public string animationWS;
+    public GameObject WaterBushReaction;
     
 
     private void Start()
@@ -22,11 +24,7 @@ public class GeorgeClone : MonoBehaviour
     {
         if (georgeMechanic.startAnimation && (!isNotOnTop()))
         {
-            _animator.SetBool("growing", true);
-        }
-        else
-        {
-            _animator.SetBool("growing", false);
+            _animator.Play("Grow");
         }
         if (georgeMechanic.isOnFire == true)
         {
@@ -39,14 +37,19 @@ public class GeorgeClone : MonoBehaviour
     {
         GeorgeMechanic spawnCopy = GameObject.Find("George").GetComponent<GeorgeMechanic>();
         inControl inControl = GameObject.Find("Player").GetComponent<inControl>(); 
-        if (coll.gameObject.CompareTag("WaterSpirit") && spawnCopy.numberOfClones <= spawnCopy.maxClones && !spawnCopy.isWet && !georgeMechanic.isGrowing)
+        if (coll.gameObject.CompareTag("WaterSpirit") && spawnCopy.numberOfClones <= spawnCopy.maxClones && !spawnCopy.isWet && !georgeMechanic.isGrowing )
         {
+            WaterBushReaction = Instantiate(WaterBushReaction);
+            var position = coll.transform.position;
+            WaterBushReaction.transform.position = new Vector3(position.x, position.y);
+            Destroy(coll.gameObject);
             georgeMechanic.isGrowing = true;
             connectionScript connectionScript = coll.gameObject.GetComponent<connectionScript>();
             inControl.numbersToSkip.Add(connectionScript.controlledInt);
             inControl.controlled = 0;
             inControl._current = 0;
             spawnCopy.isWet = true;
+            StartCoroutine(WaterAnimation());
         }
         else if (coll.gameObject.CompareTag("FireSpirit"))
         {
@@ -61,7 +64,13 @@ public class GeorgeClone : MonoBehaviour
     
     IEnumerator DestroyBushAfterWait()
     {
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+    }
+
+    IEnumerator WaterAnimation()
+    {
+        yield return new WaitForSeconds (.6f);
+        WaterBushReaction.transform.position = new Vector2(-100, -100);
     }
 }

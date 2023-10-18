@@ -111,6 +111,7 @@ public class WSAnimation : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("FireSpirit")  && !_destroyedAlready)
         {
+            Destroy(gameObject);
             Collider2D collider = GetComponent<Collider2D>();
             collider.enabled = false;
             _rigidbody.isKinematic = true;
@@ -118,12 +119,6 @@ public class WSAnimation : MonoBehaviour
             _animator.Play("Extuingished");
             inControl.numbersToSkip.Add(connection.controlledInt);
             StartCoroutine(DestroyFireAfterWait());
-        }
-        if (coll.gameObject.CompareTag("Bush")  && !_destroyedAlready)
-        {
-            _destroyedAlready = true;
-            _animator.Play("Bush reaction");
-            StartCoroutine(GoIntoPlant());
         }
     }
 
@@ -154,15 +149,5 @@ public class WSAnimation : MonoBehaviour
         yield return new WaitForSeconds(.75f);
         Destroy(gameObject);
     }
-    
-    IEnumerator GoIntoPlant()
-    {
-        Collider2D collider = GetComponent<Collider2D>();
-        collider.enabled = false;
-        _rigidbody.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        yield return new WaitForSeconds(.75f);
-        Destroy(gameObject);
-    }
-
     
 }
